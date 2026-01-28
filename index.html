@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yggdrasil – Gantt-Diagramm</title>
+  <script src="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt@0.6.1/dist/frappe-gantt.css" />
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      color: #1e293b;
+    }
+    #gantt {
+      margin-top: 2rem;
+    }
+    iframe {
+      width: 100%;
+      height: 700px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Projekt Yggdrasil – Vereine Alpha & Beta</h1>
+  <p>Nutze den folgenden Einbettungscode, um dieses Gantt-Diagramm auf eurer Webseite einzubinden:</p>
+  <pre><code>&lt;iframe src="/gantt/yggdrasil.html" width="100%" height="700" frameborder="0"&gt;&lt;/iframe&gt;</code></pre>
 
+  <div id="gantt"></div>
+
+  <script>
+    const tasks = [
+      { id: '1', name: 'Vision & Planung (Yps)', start: '2026-02-01', end: '2026-07-31', progress: 20, custom_class: 'bar-yps' },
+      { id: '2', name: 'Recht & Administration (H & Z)', start: '2026-02-01', end: '2026-06-30', progress: 30, custom_class: 'bar-law' },
+      { id: '3', name: 'Design & Kommunikation (M & R)', start: '2026-02-01', end: '2026-07-31', progress: 25, custom_class: 'bar-marketing' },
+      { id: '4', name: 'Technik & Plattform (S & P)', start: '2026-03-01', end: '2026-07-31', progress: 10, custom_class: 'bar-tech' },
+      { id: '5', name: 'Podcast & Medien (C & J)', start: '2026-03-01', end: '2026-07-31', progress: 15, custom_class: 'bar-podcast' },
+      { id: '6', name: 'Vertrieb & Community (K & G)', start: '2026-04-01', end: '2026-07-31', progress: 10, custom_class: 'bar-sales' },
+      { id: '7', name: 'Finanzen & Kontrolle (Yps + H & Z)', start: '2026-02-01', end: '2026-07-31', progress: 40, custom_class: 'bar-finance' },
+      { id: '8', name: 'Launch 1 – Stimmen', start: '2026-05-01', end: '2026-05-15', progress: 100, custom_class: 'bar-launch1' },
+      { id: '9', name: 'Launch 2 – Öffentlichkeit', start: '2026-07-01', end: '2026-07-15', progress: 0, custom_class: 'bar-launch2' }
+    ];
+
+    const gantt = new Gantt('#gantt', tasks, {
+      view_mode: 'Month',
+      date_format: 'YYYY-MM-DD',
+      custom_popup_html: task => `
+        <div class="details-container">
+          <h5>${task.name}</h5>
+          <p>Zeitraum: ${task.start} – ${task.end}</p>
+          <p>Fortschritt: ${task.progress}%</p>
+        </div>`
+    });
+  </script>
+</body>
+</html>
